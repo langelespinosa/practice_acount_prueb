@@ -40,5 +40,5 @@ func Router(app *fiber.App, userH *UsersHandler, aliasH *AliasHandler, transH *T
 	app.Delete("transport/:id", transH.DeleteTransport)
 
 	//http://localhost:7000/buscar?query=
-	app.Get("/buscar", SemanticSearch)
+	app.Get("/login/buscar", SemanticSearch)
 }
