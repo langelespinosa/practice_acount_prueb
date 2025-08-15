@@ -1,0 +1,95 @@
+Instalar swag (convertidor de anotaciones de Swagger)
+
+1. Verifica tu GOPATH
+
+Ejecuta esto en tu terminal para ver cuál es tu GOPATH:
+
+go env GOPATH
+
+Por lo general, en sistemas UNIX (Linux/Mac), es:
+
+/home/tu-usuario/go
+
+O en Windows (en PowerShell):
+
+C:\Users\TuUsuario\go
+
+
+2. Agrega $GOPATH/bin al PATH 🐧 Linux / MacOS
+
+Edita tu archivo ~/.bashrc, ~/.zshrc o ~/.profile, 
+dependiendo de tu shell. Agrega esta línea al final del archivo:
+
+export PATH="$PATH:$(go env GOPATH)/bin"
+
+Luego, ejecuta:
+
+source ~/.bashrc   # o ~/.zshrc si usas zsh
+
+🪟 Windows
+
+    Abre "Configuración del sistema" → "Variables de entorno".
+
+    Busca la variable Path en tu usuario.
+
+    Haz clic en Editar.
+
+    Agrega esta entrada:
+
+%USERPROFILE%\go\bin
+
+(o el path exacto que obtuviste con go env GOPATH + \bin)
+
+
+3. Verifica que swag funcione
+
+Después instala swag ejecutando lo siguiente:
+
+go install github.com/swaggo/swag/cmd/swag@latest
+
+Verifica con:
+
+swag --version
+
+Si todo está bien, deberías ver algo como:
+
+swag version v1.16.2
+
+
+
+Configurar Mysql
+
+1. Iniciar con root
+
+mysql -u root -p
+
+2. Crear base
+
+create database email;
+
+3. Crear usuario
+
+create user 'web'@'localhost' identified by 'password';
+
+4. Asignarle privilegios 
+
+grant select, insert, update, delete, create, references, alter on email.* to 'web'@'localhost';
+flush privileges;
+
+5. Ejecutar go run .
+
+6. Insertar por lo menos un valor a la tabla transport antes de insertar en la tabla user
+
+insert into transports (created_at, updated_at, domain, transport) values (now(), now(), '@example.com', null);
+insert into transports (created_at, updated_at, domain, transport) values (now(), now(), '@midominio.com', null);
+insert into transports (created_at, updated_at, domain, transport) values (now(), now(), '@openai.com', null);
+insert into transports (created_at, updated_at, domain, transport) values (now(), now(), '@gmail.com', null);
+insert into transports (created_at, updated_at, domain, transport) values (now(), now(), '@outlook.com', null);
+insert into transports (created_at, updated_at, domain, transport) values (now(), now(), '@facebook.com', null);
+insert into transports (created_at, updated_at, domain, transport) values (now(), now(), '@microsoft.com', null);
+insert into transports (created_at, updated_at, domain, transport) values (now(), now(), '@amazon.com', null);
+insert into transports (created_at, updated_at, domain, transport) values (now(), now(), '@github.com', null);
+insert into transports (created_at, updated_at, domain, transport) values (now(), now(), '@netflix.com', null);
+
+
+

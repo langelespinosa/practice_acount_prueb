@@ -1,0 +1,436 @@
+definitions:
+  api.Swagger.CreateAlias:
+    properties:
+      local:
+        type: string
+      remoto:
+        type: string
+    type: object
+  api.Swagger.CreateTransport:
+    properties:
+      domain:
+        type: string
+      transport:
+        type: string
+    type: object
+  api.Swagger.CreateUser:
+    properties:
+      dominio:
+        type: integer
+      email:
+        type: string
+      grupo:
+        type: string
+      identificacion:
+        type: string
+      login:
+        type: string
+      maildir:
+        type: string
+      password:
+        type: string
+      quota:
+        format: int32
+        type: integer
+    type: object
+  api.Swagger.Login:
+    properties:
+      login:
+        type: string
+      password:
+        type: string
+    type: object
+  api.Swagger.UpdatePass:
+    properties:
+      confirmPassword:
+        type: string
+      newPassword:
+        type: string
+      password:
+        type: string
+    type: object
+  api.Swagger.UpdateUser:
+    properties:
+      dominio:
+        type: integer
+      email:
+        type: string
+      grupo:
+        type: string
+      identificacion:
+        type: string
+      login:
+        type: string
+      maildir:
+        type: string
+      quota:
+        format: int32
+        type: integer
+    type: object
+host: localhost:7000
+info:
+  contact: {}
+  title: Practice Account Manager
+paths:
+  /alias:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Local, Remoto
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/api.Swagger.CreateAlias'
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "500":
+          description: Internal Server Error
+      tags:
+      - Alias
+  /alias/{id}:
+    delete:
+      parameters:
+      - description: Id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      tags:
+      - Alias
+    get:
+      parameters:
+      - description: Id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+      tags:
+      - Alias
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Local, Remoto
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/api.Swagger.CreateAlias'
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      tags:
+      - Alias
+  /aliases:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+        "500":
+          description: Internal Server Error
+      tags:
+      - Alias
+  /login:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Login, Password
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/api.Swagger.Login'
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      tags:
+      - User
+  /register:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Login, Email, Password, Maildir, Identificacion, Grupo, Dominio,
+          Quota
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/api.Swagger.CreateUser'
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "500":
+          description: Internal Server Error
+      tags:
+      - User
+  /transport:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Domain, Transport
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/api.Swagger.CreateTransport'
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "500":
+          description: Internal Server Error
+      tags:
+      - Transport
+  /transport/{id}:
+    delete:
+      parameters:
+      - description: Id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      tags:
+      - Transport
+    get:
+      parameters:
+      - description: Id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+      tags:
+      - Transport
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Domain, Transport
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/api.Swagger.CreateTransport'
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      tags:
+      - Transport
+  /transports:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+        "500":
+          description: Internal Server Error
+      tags:
+      - Transport
+  /user/{id}:
+    delete:
+      parameters:
+      - description: Id
+        in: path
+        name: id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      tags:
+      - User
+    get:
+      parameters:
+      - description: Id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+      tags:
+      - User
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Login, Email, Maildir, Identificacion, Grupo, Dominio, Quota
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/api.Swagger.UpdateUser'
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      tags:
+      - User
+  /user/logout:
+    post:
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+      tags:
+      - User
+  /user/pass/{id}:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Password, NewPassword, ConfirmPassword
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/api.Swagger.UpdatePass'
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+        "401":
+          description: Unauthorized
+        "404":
+          description: Not Found
+        "500":
+          description: Internal Server Error
+      tags:
+      - User
+  /users:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+        "500":
+          description: Internal Server Error
+      tags:
+      - User
+swagger: "2.0"
